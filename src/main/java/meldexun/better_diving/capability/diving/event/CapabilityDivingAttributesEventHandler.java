@@ -3,7 +3,6 @@ package meldexun.better_diving.capability.diving.event;
 import meldexun.better_diving.BetterDiving;
 import meldexun.better_diving.capability.diving.CapabilityDivingAttributesProvider;
 import meldexun.better_diving.capability.diving.ICapabilityDivingAttributes;
-import meldexun.better_diving.integration.IndustrialCraft;
 import meldexun.better_diving.network.packet.SPacketSyncOxygen;
 import meldexun.better_diving.util.BetterDivingConfig;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
@@ -30,7 +29,7 @@ public class CapabilityDivingAttributesEventHandler {
 	public static void onPlayerBreakSpeedEvent(BreakSpeed event) {
 		EntityPlayer player = event.getEntityPlayer();
 
-		if (BetterDivingConfig.getInstance().modules.blockBreaking && player.isInWater() && !IndustrialCraft.isDrilling(player)) {
+		if (BetterDivingConfig.getInstance().modules.blockBreaking && player.isInWater()) {
 			ICapabilityDivingAttributes idiving = player.getCapability(CapabilityDivingAttributesProvider.DIVING_ATTRIBUTES, null);
 
 			event.setNewSpeed(event.getNewSpeed() * idiving.getBreakSpeedFromPlayer());

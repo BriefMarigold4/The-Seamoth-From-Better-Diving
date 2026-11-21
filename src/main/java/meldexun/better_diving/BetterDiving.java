@@ -7,13 +7,6 @@ import meldexun.better_diving.init.ModCapabilities;
 import meldexun.better_diving.init.ModItems;
 import meldexun.better_diving.init.ModPackets;
 import meldexun.better_diving.init.ModWorldGenerators;
-import meldexun.better_diving.init.SeabaseModules;
-import meldexun.better_diving.integration.ArtemisLib;
-import meldexun.better_diving.integration.IndustrialCraft;
-import meldexun.better_diving.integration.MatterOverdrive;
-import meldexun.better_diving.integration.Metamorph;
-import meldexun.better_diving.integration.TerraFirmaCraft;
-import meldexun.better_diving.integration.Vampirism;
 import meldexun.better_diving.network.GuiHandler;
 import meldexun.better_diving.proxy.IProxy;
 import meldexun.better_diving.util.BetterDivingConfig;
@@ -68,7 +61,6 @@ public class BetterDiving {
 
 		ModCapabilities.registerCapabilities();
 		ModPackets.registerMessages();
-		SeabaseModules.registerModules();
 	}
 
 	@EventHandler
@@ -86,13 +78,6 @@ public class BetterDiving {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		BetterDiving.proxy.postInit();
-
-		ArtemisLib.setLoaded();
-		IndustrialCraft.setLoaded();
-		MatterOverdrive.setLoaded();
-		Metamorph.setLoaded();
-		TerraFirmaCraft.setLoaded();
-		Vampirism.setLoaded();
 	}
 
 }

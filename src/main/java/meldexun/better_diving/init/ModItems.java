@@ -13,9 +13,7 @@ import meldexun.better_diving.item.ItemDivingFeet;
 import meldexun.better_diving.item.ItemDivingHelm;
 import meldexun.better_diving.item.ItemDivingLegs;
 import meldexun.better_diving.item.ItemFish;
-import meldexun.better_diving.item.ItemHabitatBuilder;
 import meldexun.better_diving.item.ItemPowerCell;
-import meldexun.better_diving.item.ItemSeaglide;
 import meldexun.better_diving.item.ItemSeamoth;
 import meldexun.better_diving.item.ItemTooltip;
 import meldexun.better_diving.util.BetterDivingConfig;
@@ -84,9 +82,6 @@ public class ModItems {
 	public static final ItemFish BOOMERANG_COOKED = null;
 	public static final ItemFish BOOMERANG_CURED = null;
 
-	public static final ItemHabitatBuilder HABITAT_BUILDER = null;
-	public static final ItemSeaglide SEAGLIDE = null;
-
 	private ModItems() {
 
 	}
@@ -151,10 +146,7 @@ public class ModItems {
 					ItemRegistrationHandler.setItemName(new ItemFish(4, 0.5F), "holefish_cured"),
 					ItemRegistrationHandler.setItemName(new ItemFish(1, 0.5F), "boomerang"),
 					ItemRegistrationHandler.setItemName(new ItemFish(3, 0.5F), "boomerang_cooked"),
-					ItemRegistrationHandler.setItemName(new ItemFish(4, 0.5F), "boomerang_cured"),
-
-					ItemRegistrationHandler.setItemName(new ItemHabitatBuilder(), "habitat_builder"),
-					ItemRegistrationHandler.setItemName(new ItemSeaglide(), "seaglide") };
+					ItemRegistrationHandler.setItemName(new ItemFish(4, 0.5F), "boomerang_cured")};
 
 			IForgeRegistry<Item> registry = event.getRegistry();
 

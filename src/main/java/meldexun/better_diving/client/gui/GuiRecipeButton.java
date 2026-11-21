@@ -24,8 +24,4 @@ public class GuiRecipeButton extends GuiButton {
 		super.drawButton(mc, mouseX, mouseY, partialTicks);
 	}
 
-	public void actionPerformed(GuiFabricator guiFabricator) {
-		BetterDiving.network.sendToServer(new CPacketCraftRecipe(this.recipe));
-	}
-
 }

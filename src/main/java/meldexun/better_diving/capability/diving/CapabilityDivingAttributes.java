@@ -4,12 +4,7 @@ import meldexun.better_diving.BetterDiving;
 import meldexun.better_diving.capability.item.oxygen.CapabilityOxygenProvider;
 import meldexun.better_diving.capability.item.oxygen.ICapabilityOxygen;
 import meldexun.better_diving.entity.EntitySeamoth;
-import meldexun.better_diving.integration.ArtemisLib;
-import meldexun.better_diving.integration.MatterOverdrive;
-import meldexun.better_diving.integration.Metamorph;
-import meldexun.better_diving.integration.Vampirism;
 import meldexun.better_diving.item.AbstractItemDivingGear;
-import meldexun.better_diving.item.ItemSeaglide;
 import meldexun.better_diving.network.packet.CPacketSyncPlayerInput;
 import meldexun.better_diving.network.packet.SPacketSyncOxygen;
 import meldexun.better_diving.util.BetterDivingConfig;
@@ -22,7 +17,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Enchantments;
-import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -157,19 +151,6 @@ public class CapabilityDivingAttributes implements ICapabilityDivingAttributes {
 	@Override
 	public void updateSize() {
 		if (BetterDivingConfig.getInstance().modules.divingMovement && BetterDivingConfig.getInstance().general.playerResizing) {
-			if (ArtemisLib.loaded && BetterDivingConfig.getInstance().general.artemisLibCompatibility) {
-				if (this.isInSeamoth) {
-					EntityHelper.updatePlayerSize(this.player, this.player.height * 0.85F, this.player.width, this.player.height * 0.646875F);
-				} else if (this.isPrevInSeamoth) {
-					this.player.eyeHeight = this.player.getDefaultEyeHeight();
-				}
-
-				if (this.isDiving) {
-					EntityHelper.updatePlayerSize(this.player, this.player.height * 0.333333F, this.player.width, this.player.height * 0.222222F);
-				} else if (this.prevIsDiving) {
-					this.player.eyeHeight = this.player.getDefaultEyeHeight();
-				}
-			} else {
 				if (this.isInSeamoth) {
 					EntityHelper.updatePlayerSize(this.player, 1.53F, 0.6F, 1.164375F);
 				} else if (this.isPrevInSeamoth) {
@@ -181,7 +162,6 @@ public class CapabilityDivingAttributes implements ICapabilityDivingAttributes {
 				} else if (this.prevIsDiving) {
 					EntityHelper.resetPlayerSize(this.player);
 				}
-			}
 		}
 	}
 
@@ -266,10 +246,6 @@ public class CapabilityDivingAttributes implements ICapabilityDivingAttributes {
 								rotationPitch = (rotationPitch - 90.0F) / 2.0F;
 								up = 0;
 							}
-						}
-
-						if (ItemSeaglide.canUseSeaglide(this.player) && !inputForward) {
-							speed *= 0.4D;
 						}
 
 						this.move3D(this.player, strafe, up, forward, speed, rotationYaw, rotationPitch);
@@ -363,18 +339,10 @@ public class CapabilityDivingAttributes implements ICapabilityDivingAttributes {
 	}
 
 	protected void handleOxygen() {
+		EntitySeamoth seamoth = (EntitySeamoth) player.getRidingEntity();
 		if (BetterDivingConfig.getInstance().modules.oxygenHandling) {
 			int airUsage = 0;
-			if (this.player.isInsideOfMaterial(Material.WATER) && !this.player.canBreatheUnderwater() && !this.player.isPotionActive(MobEffects.WATER_BREATHING) && !this.player.capabilities.disableDamage && !(this.player.getRidingEntity() instanceof EntitySeamoth) && !Metamorph.hasWaterBreathing(this.player)
-					&& !Vampirism.hasWaterBreathing(this.player) && !MatterOverdrive.hasWaterBreathing(this.player)) {
-				airUsage -= 1;
-				if (BetterDivingConfig.getInstance().divingValues.airEfficiency) {
-					ItemStack helm = this.player.inventory.armorInventory.get(3);
-					if (!(helm.getItem() instanceof AbstractItemDivingGear) || !((AbstractItemDivingGear) helm.getItem()).isImproved()) {
-						airUsage -= EntityHelper.blocksUnderWater(this.player) / BetterDivingConfig.getInstance().divingValues.airEfficiencyLimit;
-					}
-				}
-			} else {
+			{
 				airUsage += 25;
 			}
 
@@ -392,6 +360,12 @@ public class CapabilityDivingAttributes implements ICapabilityDivingAttributes {
 				((WorldServer) this.player.world).spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.player.posX, this.player.posY + this.player.height * 0.5D, this.player.posZ, 8, 0.25D, 0.25D, 0.25D, 0.0D);
 
 				this.player.attackEntityFrom(DamageSource.DROWN, 2.0F);
+			}
+		} else if (this.isInSeamoth && !this.player.world.isRemote && seamoth.getEnergy() > 0 && this.player.isInsideOfMaterial(Material.WATER)) {
+			int air = this.player.getAir();
+
+			if (air < 300) {
+				this.player.setAir(Math.min(air + 4, 300));
 			}
 		}
 	}
@@ -517,10 +491,6 @@ public class CapabilityDivingAttributes implements ICapabilityDivingAttributes {
 
 	@Override
 	public double getSwimSpeedFromPlayer() {
-		if (ItemSeaglide.canUseSeaglide(this.player)) {
-			return BetterDivingConfig.getInstance().divingValues.seaglideSpeed;
-		}
-
 		double swimSpeedBase = this.getSwimSpeed();
 		double swimSpeedBonus = 0.0D;
 

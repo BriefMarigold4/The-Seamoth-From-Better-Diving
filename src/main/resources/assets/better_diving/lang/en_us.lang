@@ -31,10 +31,8 @@ item.creepvine_seed_cluster.name=Creepvine Seed Cluster
 item.silicone_rubber.name=Silicone Rubber
 item.fiber_mesh.name=Fiber Mesh
 item.lubricant.name=Lubricant
-item.habitat_builder.name=Habitat Builder (WIP)
 
 item.seamoth.name=Seamoth
-item.seaglide.name=Seaglide (WIP)
 item.peeper.name=Peeper
 item.peeper_cooked.name=Cooked Peeper
 item.peeper_cured.name=Cured Peeper
@@ -83,10 +81,8 @@ item.creepvine_seed_cluster.tooltip=Indigenous seeds with high silicone and oil 
 item.silicone_rubber.tooltip=Synthetic, silicone-based rubber.
 item.fiber_mesh.tooltip=Strong natural fiber. Comfy.
 item.lubricant.tooltip=Naturally-derived, oil-based lubricant. Industrial applications.
-item.habitat_builder.tooltip=Habitat Builder (WIP)
 
 item.seamoth.tooltip=One-person sea-and-space vehicle.
-item.seaglide.tooltip=Seaglide (WIP)
 
 item.peeper.tooltip=Edible prey fish. High calorie count.
 item.peeper_cooked.tooltip=Protein-rich eyeballs. Highly nutritious.
@@ -119,9 +115,6 @@ tile.seagrass_tall_bottom.name=Seagrass Tall
 tile.seagrass_tall_top.name=Seagrass Tall Top
 tile.acid_mushroom.name=Acid Mushroom
 tile.seabase_ladder.name=Seabase Ladder
-tile.structure_block.name=Structure Block (WIP)
-tile.solar_panel.name=Solar Panel (WIP)
-tile.fabricator.name=Fabricator (WIP)
 
 #Block tooltips
 tile.limestone_outcrop.tooltip=
@@ -134,9 +127,6 @@ tile.seagrass_tall_bottom.tooltip=
 tile.seagrass_tall_top.tooltip=Creative only.
 tile.acid_mushroom.tooltip=Purple fungus. Acidic flesh.
 tile.seabase_ladder.tooltip=
-tile.structure_block.tooltip=Structure Block (WIP)
-tile.solar_panel.tooltip=Solar Panel (WIP)
-tile.fabricator.tooltip=Fabricator (WIP)
 
 #Entities
 entity.seamoth.name=Seamoth

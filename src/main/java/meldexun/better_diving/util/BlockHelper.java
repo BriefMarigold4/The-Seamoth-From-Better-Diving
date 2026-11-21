@@ -2,7 +2,6 @@ package meldexun.better_diving.util;
 
 import java.util.List;
 
-import meldexun.better_diving.integration.TerraFirmaCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -40,12 +39,12 @@ public class BlockHelper {
 
 	public static boolean isWaterBlock(IBlockState state) {
 		Block block = state.getBlock();
-		return block == Blocks.WATER || block == Blocks.FLOWING_WATER || TerraFirmaCraft.isWater(state);
+		return block == Blocks.WATER || block == Blocks.FLOWING_WATER;
 	}
 
 	public static boolean isWaterBlock(IBlockState state, int meta) {
 		Block block = state.getBlock();
-		return block == Blocks.WATER || (block == Blocks.FLOWING_WATER && block.getMetaFromState(state) <= meta) || TerraFirmaCraft.isWater(state, meta);
+		return block == Blocks.WATER || (block == Blocks.FLOWING_WATER && block.getMetaFromState(state) <= meta);
 	}
 
 }

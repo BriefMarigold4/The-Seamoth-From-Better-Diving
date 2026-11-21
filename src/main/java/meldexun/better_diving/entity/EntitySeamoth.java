@@ -62,12 +62,14 @@ public class EntitySeamoth extends Entity implements IEntityAdditionalSpawnData 
 
 	public boolean insideWater = false;
 
+	public static final float scale = 1.0F;
+
 	@SideOnly(Side.CLIENT)
 	public SeamothEngineLoopSound engineLoopSound;
 
 	public EntitySeamoth(World worldIn) {
 		super(worldIn);
-		this.setSize(1.82F, 1.82F);
+		this.setSize(1.82F * scale, 1.82F * scale);
 		this.isImmuneToFire = true;
 	}
 
@@ -216,7 +218,7 @@ public class EntitySeamoth extends Entity implements IEntityAdditionalSpawnData 
 
 	@Override
 	public double getMountedYOffset() {
-		return 0.36D;
+		return 0.0D;
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class RenderSeamoth extends Render<EntitySeamoth> {
 
 	public RenderSeamoth(RenderManager renderManagerIn) {
 		super(renderManagerIn);
-		this.shadowSize = 0.5F;
+		this.shadowSize = 0.5F * EntitySeamoth.scale;
 	}
 
 	@Override
@@ -37,18 +37,19 @@ public class RenderSeamoth extends Render<EntitySeamoth> {
 		GL11.glTranslated(x, y, z);
 
 		if (player == entity.getControllingPassenger() && mc.gameSettings.thirdPersonView == 0) {
-			GL11.glTranslated(0.0D, player.eyeHeight, 0.0D);
+			double eye = entity.getMountedYOffset() + player.getYOffset() + player.eyeHeight;
+			GL11.glTranslated(0.0D, eye, 0.0D);
 			this.setupRotation(entity, partialTicks);
-			GL11.glTranslated(0.0D, 0.8125D - player.eyeHeight, -0.32D);
+			GL11.glTranslated(0.0D, 0.8125D * EntitySeamoth.scale - eye, -0.32D);
 		} else {
-			GL11.glTranslated(0.0D, 0.8125D, 0.0D);
+			GL11.glTranslated(0.0D, 0.8125D * EntitySeamoth.scale, 0.0D);
 			this.setupRotation(entity, partialTicks);
 		}
 
 		GL11.glScaled(-1.0D, -1.0D, 1.0D);
 
 		this.bindEntityTexture(entity);
-		this.model.render(entity, partialTicks, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+		this.model.render(entity, partialTicks, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F * EntitySeamoth.scale);
 		GL11.glPopMatrix();
 
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
