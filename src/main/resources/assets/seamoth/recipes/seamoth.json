@@ -1,0 +1,36 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "ADA",
+        "EBA",
+        "ACA"
+    ],
+    "key":
+    {
+        "A":
+        {
+            "item": "minecraft:iron_block"
+        },
+        "B":
+        {
+            "item": "seamoth:power_cell"
+        },
+        "C":
+        {
+            "item": "minecraft:stone_button"
+        },
+        "D":
+        {
+            "item": "minecraft:iron_trapdoor"
+        },
+        "E":
+        {
+            "item": "minecraft:glass"
+        }
+    },
+    "result":
+    {
+        "item": "seamoth:seamoth"
+    }
+}

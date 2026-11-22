@@ -1,0 +1,32 @@
+{
+    "seamoth_engine_loop": {
+        "category": "master",
+        "sounds": [
+            {
+                "name": "seamoth:seamoth_engine_loop",
+                "stream": true
+            }
+        ]
+    },
+    "seamoth_enter": {
+        "category": "master",
+        "sounds": [
+            {
+                "name": "seamoth:seamoth_enter",
+                "volume": 0.5
+            }
+        ]
+    },
+    "seamoth_exit": {
+        "category": "master",
+        "sounds": [ "seamoth:seamoth_exit" ]
+    },
+    "seamoth_impact": {
+        "category": "master",
+        "sounds": [
+            "seamoth:seamoth_impact_1",
+            "seamoth:seamoth_impact_2",
+            "seamoth:seamoth_impact_3"
+        ]
+    }
+}
